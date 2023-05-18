@@ -1,0 +1,35 @@
+{
+    "326f62fe-f57c-11ed-8e8e-17cb98fe7fd8": {
+        "Mark": "BMW",
+        "Model": "E60",
+        "Color": "black",
+        "Price": 456000000,
+        "Seller": {
+            "name": "Arsen",
+            "surname": "Sahakyan",
+            "city": "Yerevan"
+        }
+    },
+    "3a5c54f4-f57c-11ed-8e8e-17cb98fe7fd8": {
+        "Mark": "BMW",
+        "Model": "E90",
+        "Color": "white",
+        "Price": 780000000,
+        "Seller": {
+            "name": "Arsen",
+            "surname": "Sahakyan",
+            "city": "Yerevan"
+        }
+    },
+    "05bb287e-f581-11ed-8e8e-17cb98fe7fd8": {
+        "Mark": "Kia",
+        "Model": "Optima",
+        "Color": "black",
+        "Price": 789200000,
+        "Seller": {
+            "name": "qweqweqwety",
+            "surname": "tyutyu",
+            "city": "ghjghjghj"
+        }
+    }
+}
