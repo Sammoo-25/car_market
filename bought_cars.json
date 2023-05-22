@@ -1,0 +1,42 @@
+{
+    "8ae277b3-77d4-4117-8b6e-8e3ef425fa69": {
+        "Mark": "BMW",
+        "Model": "E60",
+        "Color": "Black",
+        "Price": 500000,
+        "Date": 2012,
+        "Discount": 15,
+        "Seller": {
+            "name": "Vaspur",
+            "surname": "Manucharyan",
+            "city": "Gyumri"
+        },
+        "Buyer": {
+            "name": "Manuk",
+            "surname": "Avetisyan",
+            "city": "Moscow"
+        },
+        "data": "2023-05-22",
+        "spent money": 500000
+    },
+    "9d6a91fd-3335-4355-aba7-3aac1daeb18c": {
+        "Mark": "Toyota",
+        "Model": "Corola",
+        "Color": "white",
+        "Price": 500000,
+        "Date": 2020,
+        "Discount": 15,
+        "Seller": {
+            "name": "Vaspur",
+            "surname": "Manucharyan",
+            "city": "Gyumri"
+        },
+        "Buyer": {
+            "name": "Manuk",
+            "surname": "Avetisyan",
+            "city": "Moscow"
+        },
+        "data": "2023-05-22",
+        "spent money": 500000
+    }
+}
