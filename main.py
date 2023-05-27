@@ -4,7 +4,7 @@ from database import Database
 from seller import Seller
 
 car_par_f = "car_park.json"
-sell_f = 'seller.json'
+sell_f = 'seller_car_park.json'
 dt = Database()
 car_market = Car_Market(dt, car_par_f, sell_f)
 if __name__ == '__main__':

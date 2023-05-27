@@ -18,11 +18,3 @@ class Person:
     @property
     def city(self):
         return self._city
-
-    def show(self):
-        return f"name: {self._name}\nsurname: {self._surname}\ncity: {self._city}"
-
-
-# if __name__ == '__main__':
-#     p = Person("Arsen", "Manukyan", "Yerevan")
-#     print(p.show())
