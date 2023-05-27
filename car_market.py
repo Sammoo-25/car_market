@@ -60,27 +60,6 @@ class Car_Market:
         else:
             return []
 
-    def return_car(self, buyer, car_obj):
-        buyers_cars_park = self.data.read_data(buyer.buyers_cars_park_file)
-        seller_car_park = self.data.read_data(self.seller_file)
-        car_park = self.data.read_data(self.car_park_file)
-
-        if buyer.name in buyers_cars_park:
-            buyer = buyers_cars_park[buyer.name]
-            for car in buyer['cars']:
-                if car['Car_id'] == car_obj.car_id:
-                    seller_id = car_obj.car_id.split('-')[0]  # Extract the seller ID from the car ID
-                    if seller_id in seller_car_park:
-                        seller = seller_car_park[seller_id]
-                        seller['cars'].append(car)  # Add the car back to the seller's car list
-                        self.data.write_data(seller_car_park, self.seller_file)
-                    car_park[car_obj.car_id] = car  # Add the car back to the car park
-                    self.data.write_data(car_park, self.car_park_file)
-                    buyer['cars'].remove(car)  # Remove the car from the buyer's car list
-                    self.data.write_data(buyers_cars_park, buyer.buyers_cars_park_file)
-                    return True  # Car successfully returned
-        return False  # Car or buyer not found
-
 if __name__ == '__main__':
     car_file = "car_park.json"
     sell_file = "seller_car_park.json"
