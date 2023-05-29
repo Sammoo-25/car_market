@@ -24,16 +24,7 @@ class Buyer(Person):
         self.buyers_car_park = self.data.read_data(buyers_cars_park_file)
 
         self.buyer_id = str(uuid.uuid4())
-        # self._add_info()
         self._buyers_bank()
-
-    def _add_info(self):
-        self.buyers_car_park[self.buyer_id] = {'name': self.name,
-                                               'surname': self.surname,
-                                               'city': self.city,
-                                               'cars': []
-                                               }
-        self.data.write_data(self.buyers_car_park, self.buyers_cars_park_file)
 
     def _add_buyers_car(self, car_obj):
         data = self.data.read_data(self.bought_cars_fname)
@@ -114,10 +105,8 @@ class Buyer(Person):
 
     def __change_money(self, car_obj, action):
         if action == "p":
-            ##return
             self.money[self.name]['Balance'] = self._plus_money(car_obj)
         elif action == "m":
-            ##buy
             self.money[self.name]['Balance'] = self._minus_money(car_obj)
         else:
             raise ValueError
@@ -152,24 +141,3 @@ class Buyer(Person):
         else:
             print("You have no cars.")
 
-    #
-    # def return_car(self, car_obj):
-    #     buyers_cars_park = self.data.read_data(self.buyers_cars_park_file)
-    #     seller_car_park = self.data.read_data(self.seller_car_park_file)
-    #     car_park = self.data.read_data(self.car_park_file)
-    #
-    #     if buyer_name in buyers_cars_park:
-    #         buyer = buyers_cars_park[buyer_name]
-    #         for car in buyer['cars']:
-    #             if car['Car_id'] == car_id:
-    #                 seller_id = car_id.split('-')[0]  # Extract the seller ID from the car ID
-    #                 if seller_id in seller_car_park:
-    #                     seller = seller_car_park[seller_id]
-    #                     seller['cars'].append(car)  # Add the car back to the seller's car list
-    #                     self.data.write_data(seller_car_park, self.seller_car_park_file)
-    #                 car_park[car_id] = car  # Add the car back to the car park
-    #                 self.data.write_data(car_park, self.car_park_file)
-    #                 buyer['cars'].remove(car)  # Remove the car from the buyer's car list
-    #                 self.data.write_data(buyers_cars_park, self.buyers_cars_park_file)
-    #                 return True  # Car successfully returned
-    #     return False  # Car or buyer not found

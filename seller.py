@@ -10,8 +10,6 @@ class Seller(Person):
             super().__init__(name, surname, city)
         self.dat = data_obj
         self.car_market = car_market
-        # self.sold_cars_fname = sold_cars_fname
-        # self.sold_cars = data_obj.read_data(self.sold_cars_fname)
         self.seller_car_park_file = seller_car_park_file
         self.seller_car_park = data_obj.read_data(self.seller_car_park_file)
 
@@ -48,12 +46,7 @@ class Seller(Person):
             if self.seller_id == id:
                 data[self.seller_id]['cars'].append(car)
         self.seller_car_park.update(data)
-        # self.seller_car_park = data
         self.dat.write_data(self.seller_car_park, self.seller_car_park_file)
-
-    # def get_available_cars(self):
-    #     data = self.seller_info
-    #     return data
 
     def __check_discount(self, car_code):
         if self.seller_car_park[car_code]['Discount']:
@@ -68,32 +61,14 @@ class Seller(Person):
         for id, value in data.items():
             cars_copy = value['cars'][:]
             for car in range(len(cars_copy)):
-                # print(value['cars'][car]['Mark'])
-                # print(car_obj.mark)
                 if car_obj.mark == cars_copy[car]['Mark']:
-                    # print(value['cars'])
-                    # print(car)
                     value['cars'].remove(cars_copy[car])
                     self.__change_money(car_obj, "p")
                     self.seller_car_park.update(data)
                     self.dat.write_data(self.seller_car_park, self.seller_car_park_file)
                     self.car_market.remove_car(car_obj)
                     self.add_sold_cars(car_obj)
-        # data = self.dat.read_data(self.sold_cars_fname)
-        # selles_cars = {}
-        # day_time = str(datetime.date.today())
-        # for id, car in self.seller_info.items():
-        #     if car_obj.mark == car['Mark']:
-        #         price = self.__check_discount(id)
-        #         selles_cars[id] = car
-        #         selles_cars[id]['Price'] = price
-        #         selles_cars[id]['data'] = day_time
-        #         selles_cars[id]['buyer'] = {'name': buyer.name, 'surname': buyer.surname, 'city': buyer.city}
-        #         self.__change_money(car_obj)
-        #         data.update(selles_cars)
-        #         self.sold_cars = data
-        #         self.dat.write_data(self.sold_cars, self.sold_cars_fname)
-        #         self.car_market.remove_car(id)
+                    self.car_market._change_money(car_obj, 'p')
 
     """
     Money
@@ -120,14 +95,6 @@ class Seller(Person):
             self.dat.write_data(self.seller_bank, self.seller_bank_file)
         else:
             raise ValueError
-
-    # self.money = self.money + (car_obj.price * 0.05)
-    # self.seller_bank['Balance'] = self.money
-    # self.car_market.bank['Balance'] = car_obj.price - self.money
-    # # balance = self.seller_bank
-    # # balance['Balance'] = self.money
-    # self.dat.write_data(self.car_market.bank, self.car_market.market_bank_file)
-    # self.dat.write_data(self.seller_bank, self.seller_bank_file)
 
     def _sellers_bank(self):
         data = self.dat.read_data(self.seller_bank_file)

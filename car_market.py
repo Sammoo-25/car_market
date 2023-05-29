@@ -15,6 +15,8 @@ class Car_Market:
         self.data = data
         self.discount = 0
 
+        self._car_market_bank_bank()
+
     def car_add(self, car_obj, seller):
         self.car_park[car_obj.car_id] = {'Mark': car_obj.mark,
                                          'Model': car_obj.model,
@@ -28,7 +30,6 @@ class Car_Market:
         self.data.write_data(self.car_park, self.car_park_file)
 
     def remove_car(self, car_obj):
-        # data = self.data.read_data(self.car_park_file)
         if car_obj.car_id in self.car_park.keys():
             del self.car_park[car_obj.car_id]
             self.data.write_data(self.car_park, self.car_park_file)
@@ -44,6 +45,32 @@ class Car_Market:
         else:
             raise ValueError
 
+    def _plus_money(self, car_obj):
+        self.bank['Balance'] = self.bank['Balance'] + (car_obj.price - car_obj.price * 0.05)
+        return self.bank['Balance']
+
+    def _minus_money(self, car_obj):
+        self.bank['Balance'] = self.bank['Balance'] - (car_obj.price - car_obj.price * 0.05)
+        return self.bank['Balance']
+
+    def _change_money(self, car_obj, action):
+        data = self.data.read_data(self.market_bank_file)
+        if action == "p":
+            data['Balance'] = self._plus_money(car_obj)
+            self.bank.update(data)
+            self.data.write_data(self.bank, self.market_bank_file)
+        elif action == "m":
+            data['Balance'] = self._minus_money(car_obj)
+            self.bank.update(data)
+            self.data.write_data(self.seller_bank, self.market_bank_file)
+        else:
+            raise ValueError
+
+    def _car_market_bank_bank(self):
+        data_bank = {'Balance': 0}
+        self.bank = data_bank
+        self.data.write_data(self.bank, self.market_bank_file)
+
     def get_car_available_discount(self, car_obj):
         car_park = self.data.read_data(self.car_park_file)
         if car_obj.car_id in car_park:
@@ -51,6 +78,7 @@ class Car_Market:
             return car['Discount']
         else:
             return None
+
     #
     def _get_seller_available_cars(self, seller):
         seller_car_park = self.data.read_data(seller.seller_car_park_file)
@@ -59,6 +87,7 @@ class Car_Market:
             return seller['cars']
         else:
             return []
+
 
 if __name__ == '__main__':
     car_file = "car_park.json"
